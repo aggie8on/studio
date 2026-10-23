@@ -1,43 +1,29 @@
-const services = [
-  { number: "01", title: "Brand foundations", description: "Positioning, naming support and the thinking that gives a visual identity something real to stand for.", tags: ["Direction", "Positioning", "Concept"] },
-  { number: "02", title: "Logo & identity", description: "Distinctive marks and considered visual identities that feel unmistakably yours, not borrowed from a trend.", tags: ["Logo design", "Visual identity", "Art direction"] },
-  { number: "03", title: "Identity systems", description: "Flexible rules, assets and guidelines that help your brand stay recognisable wherever it shows up.", tags: ["Typography", "Colour", "Guidelines"] },
-];
-const principles = [
-  { number: "01", title: "Start with the why.", description: "The strongest visual decisions come from a clear idea. We get to the heart of the thing before making it look like anything." },
-  { number: "02", title: "Make it work hard.", description: "A logo is only the beginning. The identity needs to work across real touchpoints, at different sizes, in everyday use." },
-  { number: "03", title: "Leave room to grow.", description: "A good system is recognisable without being rigid. It gives a brand a point of view and space to keep becoming." },
+const projects = [
+  { slug: "toothless-studio", title: "Toothless Studio", type: "Identity & systems", year: "2026", image: "/brand/logos/toothless-02.svg", featured: true },
+  { slug: "client-project-01", title: "Client project 01", type: "Brand identity", year: "Coming soon", image: "https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=1200&q=85" },
+  { slug: "client-project-02", title: "Client project 02", type: "Visual identity", year: "Coming soon", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=85" },
 ];
 export default function Home() {
-  return <main>
-    <header className="site-header page-shell">
-      <a href="/" className="brand-link" aria-label="Toothless home"><img src="/brand/logos/toothless-02.svg" alt="Toothless" className="brand-logo" /></a>
-      <nav className="main-nav" aria-label="Main navigation"><a href="/work">Work</a><a href="/studio">Studio</a><a className="nav-contact" href="/contact">Let’s talk <span aria-hidden="true">↗</span></a></nav>
+  return <main className="rd-home">
+    <header className="rd-header page-shell">
+      <a href="/" className="rd-brand" aria-label="Toothless home"><img src="/brand/logos/toothless-02.svg" alt="Toothless" /></a>
+      <nav aria-label="Main navigation"><a href="#work">Work</a><a href="/studio">Studio</a><a href="mailto:hi@toothless.design">Contact ↗</a></nav>
     </header>
-    <section id="top" className="hero page-shell">
-      <div className="eyebrow"><span className="status-dot" /> Independent creative studio</div>
-      <div className="hero-grid"><div className="hero-copy">
-        <h1>Good ideas deserve a <em>distinct identity.</em></h1>
-        <div className="hero-bottom"><p>Toothless builds logos, visual identities and flexible systems for people making something worth noticing.</p><a className="text-link" href="/work">View selected work <span aria-hidden="true">↗</span></a></div>
-      </div></div>
-      <div className="hero-footnote"><span>Clear thinking. Distinctive design.</span><span>Scroll to explore ↓</span></div>
+    <section className="rd-intro page-shell">
+      <p className="rd-kicker"><span className="rd-dot" /> Independent creative studio · Available for select projects</p>
+      <h1>Toothless is a creative studio making <em>logos, identity & systems.</em></h1>
+      <div className="rd-intro-bottom"><p>We build clear, distinctive identities for people and businesses with something to say.</p><a href="#work">Explore selected work <span>↓</span></a></div>
     </section>
-
-    <section className="client-strip" aria-label="Selected clients and collaborators"><div className="page-shell client-strip-inner"><div className="client-strip-heading"><p className="section-label">Good company <span>— 01</span></p><p>Selected clients & collaborators</p></div><div className="logo-marquee" aria-label="Placeholder client logos"><div className="logo-marquee-track"><span className="client-wordmark wordmark-serif">CLIENT ONE</span><span className="client-wordmark wordmark-bold">CLIENT TWO®</span><span className="client-wordmark wordmark-spaced">CLIENT THREE</span><span className="client-wordmark wordmark-serif">CLIENT FOUR</span><span className="client-wordmark wordmark-bold">CLIENT FIVE®</span><span className="client-wordmark wordmark-spaced">CLIENT SIX</span><span className="client-wordmark wordmark-serif" aria-hidden="true">CLIENT ONE</span><span className="client-wordmark wordmark-bold" aria-hidden="true">CLIENT TWO®</span><span className="client-wordmark wordmark-spaced" aria-hidden="true">CLIENT THREE</span><span className="client-wordmark wordmark-serif" aria-hidden="true">CLIENT FOUR</span><span className="client-wordmark wordmark-bold" aria-hidden="true">CLIENT FIVE®</span><span className="client-wordmark wordmark-spaced" aria-hidden="true">CLIENT SIX</span></div></div><p className="placeholder-note">Placeholder names for now — we’ll replace these with approved client logos.</p></div></section>
-    <section className="work-preview page-shell emre-home-work" aria-labelledby="featured-work-title">
-      <div className="emre-home-heading"><p className="section-label">Selected work</p><a className="text-link" href="/work">View all projects ↗</a></div>
-      <div className="emre-home-work-grid">
-        <a className="emre-home-work-card" href="/work/toothless-studio" aria-label="View Toothless Studio identity project"><div className="emre-home-work-art art-toothless"><span>toothless<span className="art-mark">®</span></span></div></a>
-        <a className="emre-home-work-card" href="/work/client-project-01" aria-label="View Client Project 01"><div className="emre-home-work-art art-one"><span className="art-symbol">◉</span></div></a>
-        <a className="emre-home-work-card" href="/work/client-project-02" aria-label="View Client Project 02"><div className="emre-home-work-art art-two"><span className="art-type">FORM<br/>FOLLOWS</span></div></a>
-        <a className="emre-home-work-card" href="/work/client-project-03" aria-label="View Client Project 03"><div className="emre-home-work-art art-three"><span className="art-object"></span></div></a>
-      </div>
-      <div className="emre-home-awards" aria-label="Placeholder awards and collaborators"><span>TOOTHLESS®</span><span>CLIENT ONE</span><span>DESIGN AWARD</span><span>CLIENT TWO</span><span>IDENTITY / 2026</span><span>CLIENT THREE</span></div>
+    <section id="work" className="rd-work page-shell">
+      <div className="rd-section-heading"><span>Selected work</span><span>2024 — 2026</span></div>
+      <div className="rd-project-list">{projects.map((project, i) => <a className="rd-project" href={"/work/" + project.slug} key={project.slug}>
+        <div className={"rd-project-visual rd-project-visual-" + i}>{i === 0 ? <div className="rd-toothless-mark"><img src={project.image} alt="" /><span>Identity, in practice.</span></div> : <img src={project.image} alt="" loading="lazy" />}</div>
+        <div className="rd-project-meta"><span className="rd-project-index">0{i + 1}</span><h2>{project.title}</h2><span>{project.type}</span><span>{project.year}</span><span className="rd-project-arrow">↗</span></div>
+      </a>)}</div>
+      <p className="rd-note">Some project names and imagery are temporary placeholders and will be replaced with approved work.</p>
     </section>
-    <section id="studio" className="studio-band"><div className="page-shell studio-layout"><p className="section-label">A little about us <span>— 02</span></p><div className="studio-copy"><h2>We make brands feel like <em>themselves.</em></h2><p>Toothless is an independent creative studio focused on logos, identity and systems. We turn sharp ideas into thoughtful, distinctive identities — made to work beyond the first impression.</p><p>Small by design. Curious by nature. Serious about the details that make the difference.</p><a className="light-text-link" href="/studio">More about the studio <span aria-hidden="true">↗</span></a></div></div></section>
-    <section id="services" className="services-section page-shell"><div className="section-heading"><p className="section-label">What we do <span>— 03</span></p><h2>From first thought<br/>to <em>full expression.</em></h2></div><div className="service-list">{services.map(service => <article className="service-row" key={service.number}><span className="service-number">{service.number}</span><h3>{service.title}</h3><div className="service-details"><p>{service.description}</p><div className="tag-list">{service.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div><span className="service-arrow" aria-hidden="true">↗</span></article>)}</div></section>
-    <section className="principles-section"><div className="page-shell"><div className="section-heading principles-heading"><p className="section-label">How we think <span>— 04</span></p><h2>Good design has a reason <em>to exist.</em></h2></div><div className="principles-grid">{principles.map(principle => <article className="principle-card" key={principle.number}><span className="principle-number">{principle.number}</span><h3>{principle.title}</h3><p>{principle.description}</p></article>)}</div></div></section>
-    <section className="process-section page-shell"><div className="process-intro"><p className="section-label">A clear process <span>— 05</span></p><h2>Thoughtful work.<br/><em>No mystery.</em></h2><p>Every project is different, but the aim stays the same: make the right decisions, together, and turn them into a system you can actually use.</p><a className="text-link" href="/studio">See how we work <span aria-hidden="true">↗</span></a></div><ol className="process-list"><li><span>01</span><div><h3>Listen</h3><p>Understand the business, the people and the problem.</p></div></li><li><span>02</span><div><h3>Define</h3><p>Find the central idea and the direction worth pursuing.</p></div></li><li><span>03</span><div><h3>Design</h3><p>Build the identity and refine the details until they feel right.</p></div></li><li><span>04</span><div><h3>Deliver</h3><p>Hand over a coherent, practical system ready for real life.</p></div></li></ol></section>
-    <footer id="contact" className="studio-footer"><div className="page-shell studio-footer-inner"><div className="studio-footer-top"><span className="footer-index">TOOTHLESS® / INDEPENDENT CREATIVE STUDIO</span><span className="footer-kicker">A good idea starts with a conversation.</span></div><div className="studio-footer-main"><h2>Make it<br/><em>matter.</em></h2><div className="studio-footer-action"><p>Logos, identity and systems for people making something worth noticing.</p><a href="/contact" className="footer-cta">Tell us what you’re thinking <span aria-hidden="true">↗</span></a></div></div><div className="studio-footer-bottom"><a className="footer-email" href="mailto:hi@toothless.design">hi@toothless.design</a><nav aria-label="Footer navigation"><a href="/">Home</a><a href="/work">Work</a><a href="/studio">Studio</a><a href="/contact">Contact</a></nav><span>© {new Date().getFullYear()} Toothless Studio</span></div></div></footer>
+    <section className="rd-studio-band"><div className="page-shell rd-studio-inner"><span className="rd-section-label">A little about us</span><div><h2>Small by design.<br/><em>Clear by nature.</em></h2><p>Toothless works at the intersection of strategy and visual craft. We make identities that are considered, useful and built to last — from the first mark to the full system.</p><a href="/studio">More about the studio ↗</a></div></div></section>
+    <section className="rd-services page-shell"><div className="rd-section-heading"><span>What we do</span><span>01 — 03</span></div><div className="rd-service-list"><div><span>01</span><h3>Logos & identity</h3><p>Distinctive marks and visual languages that give a brand a recognisable point of view.</p></div><div><span>02</span><h3>Identity systems</h3><p>Typography, colour, layout and guidelines designed to work across real touchpoints.</p></div><div><span>03</span><h3>Art direction</h3><p>A coherent visual direction that brings every part of the brand together.</p></div></div></section>
+    <footer className="rd-footer"><div className="page-shell"><div className="rd-section-heading"><span>Have something in mind?</span><span>Toothless®</span></div><h2>Let’s make it <em>matter.</em></h2><a className="rd-email" href="mailto:hi@toothless.design">hi@toothless.design ↗</a><div className="rd-footer-bottom"><span>Logos, identity & systems.</span><span>Independent creative studio</span><span>© {new Date().getFullYear()} Toothless</span></div></div></footer>
   </main>;
 }
