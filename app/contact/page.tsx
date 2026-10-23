@@ -1,9 +1,25 @@
+import PageFoot from "../../components/page-foot";
+import TopBar from "../../components/top-bar";
+import { EMAIL } from "../../lib/projects";
 import ContactForm from "./contact-form";
 
+export const metadata = { title: "Contact — Toothless" };
+
 export default function ContactPage() {
- return <main><header className="site-header page-shell"><a href="/" className="brand-link" aria-label="Toothless home"><img src="/brand/logos/toothless-02.svg" alt="Toothless" className="brand-logo" /></a><nav className="main-nav" aria-label="Main navigation"><a href="/work">Work</a><a href="/studio">Studio</a><a className="nav-contact" href="/contact" aria-current="page">Let’s talk <span aria-hidden="true">↗</span></a></nav></header>
- <section className="inner-hero contact-hero page-shell"><p className="section-label">Start a conversation <span>— 01</span></p><h1>Have a good<br/><em>one in mind?</em></h1><p className="inner-lede">Tell us what you’re building, what’s not working, or what you’d like your brand to become. We’ll take it from there.</p><a className="contact-link contact-email-link" href="#project-enquiry">Tell us about it <span aria-hidden="true">↓</span></a><p className="contact-email-note">Prefer email? <a href="mailto:hi@toothless.design">hi@toothless.design</a></p></section>
- <section className="contact-details"><div className="page-shell contact-details-inner"><div><span className="section-label">Good fit for</span><p>New identities, brand refreshes, logo design and visual systems.</p></div><div><span className="section-label">Our approach</span><p>Direct collaboration, thoughtful decisions and design made for real use.</p></div><div><span className="section-label">Next step</span><p>Send a short note. We’ll get back to you to discuss the project and what it needs.</p></div></div></section>
- <section id="project-enquiry" className="contact-form-section"><div className="page-shell contact-form-layout"><div className="contact-form-intro"><p className="section-label">Project enquiry <span>— 02</span></p><h2>Let’s make<br/><em>something matter.</em></h2><p>Share the basics below. We’ll reply by email to talk through your brief and next steps.</p><a href="mailto:hi@toothless.design">hi@toothless.design ↗</a></div><ContactForm /></div></section>
- <footer className="studio-footer contact-page-footer"><div className="page-shell studio-footer-inner"><div className="studio-footer-top"><span className="footer-index">TOOTHLESS® / INDEPENDENT CREATIVE STUDIO</span><span className="footer-kicker">Thanks for stopping by.</span></div><div className="studio-footer-main"><h2>Make it<br/><em>matter.</em></h2><div className="studio-footer-action"><p>Logos, identity and systems for people making something worth noticing.</p><a href="mailto:hi@toothless.design" className="footer-cta">hi@toothless.design <span aria-hidden="true">↗</span></a></div></div><div className="studio-footer-bottom"><a className="footer-email" href="/">← Back home</a><nav aria-label="Footer navigation"><a href="/">Home</a><a href="/work">Work</a><a href="/studio">Studio</a><a href="/contact">Contact</a></nav><span>© {new Date().getFullYear()} Toothless Studio</span></div></div></footer></main>;
+  return (
+    <main className="page">
+      <TopBar current="contact" />
+
+      <div className="col text">
+        <strong>Contact</strong>
+        <p style={{ marginTop: "1.1em" }}>
+          Tell us what you’re building, what’s not working, or what you’d like
+          your brand to become. Prefer email? <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </p>
+        <ContactForm />
+      </div>
+
+      <PageFoot />
+    </main>
+  );
 }

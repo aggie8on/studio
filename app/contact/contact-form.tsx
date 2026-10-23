@@ -45,17 +45,28 @@ export default function ContactForm() {
     }
   }
 
-  return <form className="studio-contact-form" onSubmit={handleSubmit}>
-    <div className="contact-form-heading"><p className="section-label">A few details <span>— 01</span></p><p>Tell us a little about the project. Fields marked * are required.</p></div>
-    <div className="contact-form-grid">
-      <label><span>Your name *</span><input autoComplete="name" name="name" placeholder="Name" required /></label>
-      <label><span>Email address *</span><input autoComplete="email" name="email" type="email" placeholder="you@company.com" required /></label>
-      <label><span>Company / brand</span><input autoComplete="organization" name="company" placeholder="Your company" /></label>
-      <label><span>What do you need?</span><select name="service" defaultValue=""><option value="" disabled>Select a service</option><option>Logo design</option><option>Brand identity</option><option>Identity system</option><option>Brand refresh</option><option>Something else</option></select></label>
-      <label className="contact-form-message"><span>Tell us about the project *</span><textarea name="message" placeholder="What are you building, and what would you like help with?" rows={5} required /></label>
-    </div>
-    <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="contact-form-honey" aria-hidden="true" />
-    <div className="contact-form-submit"><button type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send enquiry"} <span aria-hidden="true">↗</span></button><p aria-live="polite" className={"contact-form-feedback " + status}>{feedback}</p></div>
-    <p className="contact-form-privacy">Your details are used only to respond to this enquiry.</p>
-  </form>;
+  return (
+    <form className="contact-form" onSubmit={handleSubmit}>
+      <label><span>Name *</span><input autoComplete="name" name="name" placeholder="Your name" required /></label>
+      <label><span>Email *</span><input autoComplete="email" name="email" type="email" placeholder="you@company.com" required /></label>
+      <label><span>Company / brand</span><input autoComplete="organization" name="company" placeholder="Optional" /></label>
+      <label>
+        <span>What do you need?</span>
+        <select name="service" defaultValue="">
+          <option value="" disabled>Select a service</option>
+          <option>Logo design</option>
+          <option>Brand identity</option>
+          <option>Identity system</option>
+          <option>Brand refresh</option>
+          <option>Something else</option>
+        </select>
+      </label>
+      <label><span>Project *</span><textarea name="message" placeholder="What are you building, and what would you like help with?" rows={5} required /></label>
+      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="contact-honey" aria-hidden="true" />
+      <div className="contact-actions">
+        <button type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send"}</button>
+        <p aria-live="polite" className={"feedback " + status}>{feedback}</p>
+      </div>
+    </form>
+  );
 }

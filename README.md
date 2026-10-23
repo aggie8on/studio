@@ -1,6 +1,6 @@
-# Portfolio recreation
+# Toothless
 
-A responsive Next.js and Tailwind CSS recreation inspired by ja.mt, built as a starting point for a personal design portfolio.
+Minimal single-column site for Toothless, an independent creative studio. Built with Next.js (App Router).
 
 ## Development
 
@@ -9,4 +9,13 @@ npm install
 npm run dev
 ```
 
-The site uses the Next.js App Router and can be deployed on Vercel.
+## Editing content
+
+- `lib/projects.ts` — projects shown on the home overlay, `/work` and `/work/[slug]`. Entries with `placeholder: true` are stand-ins.
+- `app/page.tsx` — home copy and timeline.
+- `app/studio/page.tsx` — studio services and process.
+- `app/globals.css` — the whole design system (one stylesheet).
+
+Placeholder image boxes (`.ph`) can be swapped for real images by dropping an `<img>` inside them.
+
+Deploys on Vercel.

@@ -1,6 +1,47 @@
-const projects = [
- {slug:"toothless-studio",title:"Toothless Studio",service:"Identity & systems",year:"2026",image:"https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=1800&q=85",alt:"Abstract creative studio project image"},
- {slug:"client-project-01",title:"Client project 01",service:"Brand identity",year:"Coming soon",image:"https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=1800&q=85",alt:"Temporary product project image"},
- {slug:"client-project-02",title:"Client project 02",service:"Visual identity",year:"Coming soon",image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1800&q=85",alt:"Temporary product project image"}
-];
-export default function WorkPage(){return <main className="rd-inner-page"><header className="rd-header page-shell"><a href="/" className="rd-brand" aria-label="Toothless home"><img src="/brand/logos/toothless-02.svg" alt="Toothless"/></a><nav aria-label="Main navigation"><a href="/work" aria-current="page">Work</a><a href="/studio">Studio</a><a href="mailto:hi@toothless.design">Contact ↗</a></nav></header><section className="page-shell rd-archive-intro"><p className="rd-kicker">Toothless® / Selected work</p><h1>A few things<br/><em>we’ve made.</em></h1><p>Identity work, in different shapes and sizes.</p></section><section className="page-shell rd-archive-list">{projects.map((p,i)=><a className="rd-archive-project" href={"/work/"+p.slug} key={p.slug}><div className={"rd-archive-image rd-archive-image-"+i}><img src={p.image} alt={p.alt} loading={i===0?"eager":"lazy"}/></div><div className="rd-project-meta"><span className="rd-project-index">0{i+1}</span><h2>{p.title}</h2><span>{p.service}</span><span>{p.year}</span><span className="rd-project-arrow">↗</span></div></a>)}</section><footer className="rd-footer"><div className="page-shell"><div className="rd-section-heading"><span>Have something in mind?</span><span>Toothless®</span></div><h2>Let’s make it <em>matter.</em></h2><a className="rd-email" href="mailto:hi@toothless.design">hi@toothless.design ↗</a><div className="rd-footer-bottom"><a href="/">Home</a><a href="/studio">Studio</a><span>© {new Date().getFullYear()} Toothless</span></div></div></footer></main>}
+import Link from "next/link";
+import PageFoot from "../../components/page-foot";
+import TopBar from "../../components/top-bar";
+import { projects } from "../../lib/projects";
+
+export const metadata = { title: "Work — Toothless" };
+
+export default function WorkPage() {
+  return (
+    <main className="page">
+      <TopBar current="work" />
+
+      <p className="eyebrow">Selected work</p>
+
+      <ul className="index-list">
+        {projects.map((project, index) => (
+          <li key={project.slug}>
+            <Link href={`/work/${project.slug}`} className="index-item">
+              <span className="n">{String(index + 1).padStart(2, "0")}</span>
+              <span className="t">{project.title}</span>
+              <span className="g">{project.tags.join(" • ")}</span>
+              <span className="y">{project.year}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <div className="index-grid">
+        {projects.map((project, index) => (
+          <Link href={`/work/${project.slug}`} className="card" key={project.slug}>
+            <div className="ph" data-label={`Image ${String(index + 1).padStart(2, "0")}`}>
+              {project.slug === "toothless-studio" && (
+                <img src="/brand/logos/toothless-02.svg" alt="Toothless logo" />
+              )}
+            </div>
+            <div className="card-meta">
+              <span className="t">{project.title}</span>
+              <span className="muted">{project.year}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      <PageFoot />
+    </main>
+  );
+}

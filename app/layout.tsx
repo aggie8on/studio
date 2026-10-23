@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Toothless Studio — Logos, Identity & Systems",
+  title: "Toothless",
   description:
-    "Toothless is an independent creative studio building distinctive logos, visual identities and flexible brand systems.",
-  applicationName: "Toothless Studio",
+    "Toothless is an independent creative studio making logos, identity and systems.",
+  applicationName: "Toothless",
   icons: {
     icon: "/brand/icons/toothless-10.svg",
   },
   openGraph: {
-    title: "Toothless Studio — Logos, Identity & Systems",
+    title: "Toothless",
     description:
-      "Distinctive logos, thoughtful visual identities and flexible systems.",
+      "An independent creative studio making logos, identity and systems.",
     type: "website",
   },
 };

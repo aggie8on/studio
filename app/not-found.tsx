@@ -1,1 +1,13 @@
-export default function NotFound() { return <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center"><p className="text-xs uppercase tracking-[.2em] text-neutral-500">404 / Page not found</p><h1 className="mt-5 text-6xl tracking-[-.08em]">A little off track.</h1><p className="mt-4 text-neutral-500">This page doesn’t seem to exist.</p><a href="/" className="mt-8 rounded-full border border-neutral-300 px-5 py-3 text-sm hover:bg-[#d8f36a]">Back to home ↗</a></main>; }
+import Link from "next/link";
+
+export default function NotFound() {
+  return (
+    <main className="nf text">
+      <strong>404</strong>
+      <p>This page doesn’t seem to exist.</p>
+      <p style={{ marginTop: "1.1em" }}>
+        <Link href="/">Back home</Link>
+      </p>
+    </main>
+  );
+}

@@ -1,8 +1,74 @@
-type Project={slug:string;title:string;client:string;year:string;description:string;services:string[];image:string;detail:string};
-const projects:Project[]=[
-{slug:"toothless-studio",title:"Toothless Studio",client:"Toothless",year:"2026",description:"An evolving identity system for an independent creative studio focused on logos, identity and systems.",services:["Identity","Art direction","Visual system"],image:"https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=2200&q=90",detail:"Project imagery and extended case study to be added."},
-{slug:"client-project-01",title:"Client project 01",client:"Client 01",year:"Coming soon",description:"A placeholder brand identity project. Approved project details will replace this copy.",services:["Brand identity","Art direction","Visual system"],image:"https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=2200&q=90",detail:"Temporary imagery — replace with approved project assets."},
-{slug:"client-project-02",title:"Client project 02",client:"Client 02",year:"Coming soon",description:"A placeholder visual identity project. Approved project details will replace this copy.",services:["Visual identity","Art direction","Design"],image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=2200&q=90",detail:"Temporary imagery — replace with approved project assets."}
-];
-export function generateStaticParams(){return projects.map(p=>({slug:p.slug}));}
-export default function ProjectPage({params}:{params:{slug:string}}){const i=projects.findIndex(p=>p.slug===params.slug),p=projects[i];if(!p)return null;const next=projects[(i+1)%projects.length];return <main className="rd-inner-page"><header className="rd-header page-shell"><a href="/" className="rd-brand" aria-label="Toothless home"><img src="/brand/logos/toothless-02.svg" alt="Toothless"/></a><nav aria-label="Main navigation"><a href="/work" aria-current="page">Work</a><a href="/studio">Studio</a><a href="mailto:hi@toothless.design">Contact ↗</a></nav></header><section className="page-shell rd-case-intro"><p className="rd-kicker">Selected work / {p.year}</p><h1>{p.title}</h1><p>{p.description}</p></section><section className="page-shell rd-case-hero"><img src={p.image} alt={p.title+" project imagery"}/><p>{p.detail}</p></section><section className="page-shell rd-case-facts"><div><span>Client</span><p>{p.client}</p></div><div><span>Services</span><p>{p.services.join(" · ")}</p></div><div><span>Year</span><p>{p.year}</p></div></section><nav className="page-shell rd-case-next"><a href="/work">← All work</a><a href={"/work/"+next.slug}>Next project: {next.title} ↗</a></nav><footer className="rd-footer"><div className="page-shell"><div className="rd-section-heading"><span>Have something in mind?</span><span>Toothless®</span></div><h2>Let’s make it <em>matter.</em></h2><a className="rd-email" href="mailto:hi@toothless.design">hi@toothless.design ↗</a><div className="rd-footer-bottom"><a href="/">Home</a><a href="/work">Work</a><a href="/studio">Studio</a><span>© {new Date().getFullYear()} Toothless</span></div></div></footer></main>}
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import PageFoot from "../../../components/page-foot";
+import TopBar from "../../../components/top-bar";
+import { projects } from "../../../lib/projects";
+
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }) {
+  const project = projects.find((p) => p.slug === params.slug);
+  return { title: project ? `${project.title} — Toothless` : "Toothless" };
+}
+
+export default function ProjectPage({ params }: { params: { slug: string } }) {
+  const index = projects.findIndex((p) => p.slug === params.slug);
+  const project = projects[index];
+  if (!project) notFound();
+
+  const next = projects[(index + 1) % projects.length];
+  const isStudio = project.slug === "toothless-studio";
+
+  return (
+    <main className="page">
+      <TopBar current="work" />
+
+      <section className="case-head text">
+        <h1>{project.title}</h1>
+        <p className="muted">{project.tags.join(" • ")}</p>
+        <p style={{ marginTop: "1.1em" }}>{project.description}</p>
+
+        <div className="facts">
+          <div className="row">
+            <span className="muted">Client</span>
+            <span>{project.client}</span>
+          </div>
+          <div className="row">
+            <span className="muted">Year</span>
+            <span>{project.year}</span>
+          </div>
+          <div className="row">
+            <span className="muted">Services</span>
+            <span>{project.tags.join(", ")}</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="case-images" aria-label={`${project.title} imagery`}>
+        <div className="ph" style={{ ["--ar" as string]: "16 / 10" }} data-label="Hero image">
+          {isStudio && <img src="/brand/logos/toothless-02.svg" alt="Toothless logo" />}
+        </div>
+        <div className="case-pair">
+          <div className="ph" data-label="Image 02" />
+          <div className="ph" data-label="Image 03" />
+        </div>
+        <div className="ph" style={{ ["--ar" as string]: "16 / 9" }} data-label="Image 04" />
+      </section>
+
+      {project.placeholder && (
+        <p className="muted" style={{ marginTop: "1.6em", maxWidth: 540 }}>
+          Placeholder project — images and copy will be replaced with approved work.
+        </p>
+      )}
+
+      <nav className="case-next" aria-label="Project navigation">
+        <Link href="/work">← All work</Link>
+        <Link href={`/work/${next.slug}`}>Next: {next.title} →</Link>
+      </nav>
+
+      <PageFoot />
+    </main>
+  );
+}
