@@ -2,18 +2,29 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Toothless",
+  metadataBase: new URL("https://toothless.design"),
+  title: {
+    default: "Toothless — Logos, identity & systems",
+    template: "%s — Toothless",
+  },
   description:
-    "Toothless is an independent creative studio making logos, identity and systems.",
+    "Toothless is an independent creative studio in Uganda building logos, identities and systems for people with something to say.",
   applicationName: "Toothless",
   icons: {
     icon: "/brand/icons/toothless-10.svg",
   },
   openGraph: {
-    title: "Toothless",
+    title: "Toothless — Logos, identity & systems",
     description:
-      "An independent creative studio making logos, identity and systems.",
+      "An independent creative studio building logos, identities and systems.",
     type: "website",
+    siteName: "Toothless",
+  },
+  twitter: {
+    card: "summary",
+    title: "Toothless — Logos, identity & systems",
+    description:
+      "An independent creative studio building logos, identities and systems.",
   },
 };
 
