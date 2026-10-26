@@ -138,3 +138,17 @@ img{height:auto}
 .page .page-foot{margin-top:58px;padding-top:18px;border-top:1px solid #e7e7e7;font-size:11px;color:#777}
 .nf{max-width:650px;margin:12vh auto;padding:24px}.nf strong{font-size:48px;letter-spacing:-.06em}.nf p{margin-top:12px;color:#666}.nf a{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:600px){.page{padding:16px 18px 24px}.page .inner-intro,.page .project-intro{padding:54px 0 38px}.page .project-facts{grid-template-columns:1fr;gap:16px}.page .contact-actions{display:grid}.page .contact-actions button{width:100%}.page .top-bar nav{gap:12px}}
+
+/* Fix legacy component selector mismatches discovered during route audit. */
+.page .top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:18px;border-bottom:1px solid #e7e7e7}
+.page .top-name{font-size:25px;font-weight:700;letter-spacing:-.06em}
+.page .top-nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.page .top-nav a{font-size:12px;color:#666}
+.page .top-nav a[aria-current=page]{color:#111;text-decoration:underline;text-underline-offset:5px}
+.page .foot{margin-top:58px;padding-top:18px;border-top:1px solid #e7e7e7;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;color:#777}
+.page .foot .muted{color:#888}
+.page .project-visuals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 48px}
+.page .project-visual{position:relative;min-height:180px;aspect-ratio:1.15;overflow:hidden;background:#f0efea;margin:0}
+.page .project-visual img{object-fit:cover}
+.page .project-visual-1,.page .project-visual-4{grid-column:span 2;aspect-ratio:1.8}
+@media(max-width:600px){.page .top{align-items:flex-start;flex-direction:column;gap:14px}.page .top-nav{gap:18px}.page .project-visuals{gap:8px}.page .project-visual{min-height:130px}.page .project-visual-1,.page .project-visual-4{aspect-ratio:1.2}}
