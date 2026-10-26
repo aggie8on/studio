@@ -1,101 +1,86 @@
 import Link from "next/link";
-import ProjectsOverlay from "../components/projects-overlay";
-import { EMAIL } from "../lib/projects";
-
-// Placeholder copy throughout — swap in real details when ready.
-const timeline = [
-  {
-    when: "Now",
-    title: "Brand guideline for Toothless Studio",
-    tags: "Identity • Systems • Guidelines",
-  },
-  {
-    when: "2025-2026",
-    title: "Brand Identity for Client 01",
-    tags: "Logo • Typography • Art direction",
-  },
-  {
-    when: "2024-2025",
-    title: "Visual Identity for Client 02",
-    tags: "Research • Identity • Packaging",
-  },
-];
+import { EMAIL, projects } from "../lib/projects";
 
 export default function Home() {
   return (
     <main className="page">
       <div className="col text">
-        <header>
-          <strong>Toothless</strong>
-          <p>
-            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-          </p>
-          <p style={{ marginTop: "1.1em" }}>
-            Creative Studio
-            <br />
-            Uganda · Working remotely
-          </p>
+        <header className="masthead">
+          <Link className="wordmark" href="/" aria-label="Toothless home">Toothless<span className="period">.</span></Link>
+          <a className="email-link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
         </header>
 
-        <p className="sep">* * *</p>
+        <section className="intro" aria-labelledby="intro-title">
+          <p className="eyebrow">Independent creative studio · Uganda / Worldwide</p>
+          <h1 id="intro-title">Logos, identity &amp; systems.</h1>
+          <p className="lead">
+            We build identities that give good ideas a clear shape — from the first mark
+            to the system that carries it into the world.
+          </p>
+        </section>
 
-        <div className="stack">
+        <section className="story" aria-label="About Toothless">
           <p>
-            Toothless is an independent creative studio focused on logos,
-            identity and systems. We work with people and businesses who have
-            something to say, and help them say it clearly.
+            Toothless is an independent creative studio working at the intersection of
+            strategy and visual identity. We partner with people building something
+            meaningful and help them make it recognisable, coherent and hard to forget.
           </p>
           <p>
-            We believe in good ideas over decoration, in making things
-            tangible before defending them, and in identities that are built to
-            keep working long after launch day.
-          </p>
-        </div>
-
-        <p className="sep">* * *</p>
-
-        <div>
-          {timeline.map((item) => (
-            <div className="row" key={item.title}>
-              <span>{item.when}</span>
-              <div>
-                <div>{item.title}</div>
-                <div className="tags">{item.tags}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <p className="sep">* * *</p>
-
-        <div className="stack">
-          <p>
-            Currently, we are building out the Toothless identity system and
-            taking on a small number of new projects. Past collaborations
-            include{" "}
-            <Link href="/work/client-project-01">Client 01</Link>,{" "}
-            <Link href="/work/client-project-02">Client 02</Link>,{" "}
-            <Link href="/work/client-project-03">Client 03</Link> and{" "}
-            <Link href="/work/client-project-04">Client 04</Link>.
+            A logo is only the beginning. We think about the language around it, the
+            rules that hold it together and the real places it needs to work — on a
+            screen, on a package, in a room or out in the world.
           </p>
           <p>
-            Outside of client work, you’ll find us sketching marks,{" "}
-            <Link href="/studio">experimenting with new tools</Link>, or
-            exploring new ways of making things.
-            <br />
-            <Link href="/studio">Studio</Link>{" "}
-            <Link href="/contact">Contact</Link>
-            <br />
-            <a href={`mailto:${EMAIL}`}>EMAIL</a>
+            Small by design, collaborative by nature. One considered system, made with
+            care from the first conversation to the final files.
           </p>
-        </div>
+        </section>
 
-        <p className="sep">* * *</p>
+        <section className="work-section" aria-labelledby="work-title">
+          <div className="section-heading">
+            <h2 id="work-title">Selected work</h2>
+            <Link href="/work">View archive <span aria-hidden="true">↗</span></Link>
+          </div>
+          <ul className="work-list">
+            {projects.map((project, index) => (
+              <li key={project.slug}>
+                <Link href={`/work/${project.slug}`} className="work-item">
+                  <span className="work-number">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="work-copy">
+                    <span className="work-title">{project.title}</span>
+                    <span className="work-description">{project.description}</span>
+                  </span>
+                  <span className="work-meta">{project.year}<span aria-hidden="true">↗</span></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="note">More work will be added as projects are ready to share.</p>
+        </section>
 
-        <div className="foot" style={{ marginTop: 0 }}>
-          <ProjectsOverlay label="My Work" />
-          <span className="foot-caps">Updated Oct, 2026</span>
-        </div>
+        <section className="services-section" aria-labelledby="services-title">
+          <h2 id="services-title">What we do</h2>
+          <ul className="service-list">
+            <li><span>01</span><div><h3>Brand foundations</h3><p>Positioning, direction and the idea that gives a brand purpose.</p></div></li>
+            <li><span>02</span><div><h3>Logo &amp; identity</h3><p>Distinctive marks and a visual language with room to grow.</p></div></li>
+            <li><span>03</span><div><h3>Identity systems</h3><p>Type, colour, layout and guidelines made for everyday use.</p></div></li>
+            <li><span>04</span><div><h3>Art direction</h3><p>A consistent point of view across the places your brand shows up.</p></div></li>
+          </ul>
+        </section>
+
+        <section className="contact-section" aria-labelledby="contact-title">
+          <p className="eyebrow">Have something in mind?</p>
+          <h2 id="contact-title">Let’s make it mean something.</h2>
+          <p>Tell us what you’re building, where you want to take it, or what needs to change.</p>
+          <a className="contact-link" href={`mailto:${EMAIL}`}>Start a conversation <span aria-hidden="true">↗</span></a>
+        </section>
+
+        <footer className="site-footer">
+          <Link className="footer-mark" href="/">Toothless<span className="period">.</span></Link>
+          <span>Logos, identity &amp; systems.</span>
+          <span>Uganda · Working worldwide</span>
+          <span>© {new Date().getFullYear()} Toothless</span>
+        </footer>
       </div>
     </main>
   );

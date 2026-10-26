@@ -1,6 +1,4 @@
-// Single source of truth for work shown on the home overlay, /work and /work/[slug].
-// Entries marked `placeholder: true` are stand-ins — replace with approved client work.
-
+// Single source of truth for the public work archive and case-study pages.
 export type Project = {
   slug: string;
   title: string;
@@ -8,58 +6,21 @@ export type Project = {
   year: string;
   tags: string[];
   description: string;
-  placeholder?: boolean;
+  overview: string;
+  services: string[];
 };
 
 export const projects: Project[] = [
   {
     slug: "toothless-studio",
-    title: "Toothless Studio",
+    title: "The Toothless identity",
     client: "Toothless",
     year: "2026",
-    tags: ["Identity", "Systems", "Art direction"],
-    description:
-      "The in-house identity for an independent creative studio focused on logos, identity and systems.",
-  },
-  {
-    slug: "client-project-01",
-    title: "Client Project 01",
-    client: "Client 01",
-    year: "2026",
-    tags: ["Brand identity", "Logo"],
-    description:
-      "A placeholder brand identity project. Approved project details will replace this copy.",
-    placeholder: true,
-  },
-  {
-    slug: "client-project-02",
-    title: "Client Project 02",
-    client: "Client 02",
-    year: "2025",
-    tags: ["Visual identity", "Typography"],
-    description:
-      "A placeholder visual identity project. Approved project details will replace this copy.",
-    placeholder: true,
-  },
-  {
-    slug: "client-project-03",
-    title: "Client Project 03",
-    client: "Client 03",
-    year: "2025",
-    tags: ["Logo", "Packaging"],
-    description:
-      "A placeholder logo and packaging project. Approved project details will replace this copy.",
-    placeholder: true,
-  },
-  {
-    slug: "client-project-04",
-    title: "Client Project 04",
-    client: "Client 04",
-    year: "2024",
-    tags: ["Brand refresh", "Guidelines"],
-    description:
-      "A placeholder brand refresh project. Approved project details will replace this copy.",
-    placeholder: true,
+    tags: ["Brand identity", "Identity systems", "Art direction"],
+    description: "Building a clear, flexible identity for an independent creative studio.",
+    overview:
+      "Toothless is built around a simple belief: good ideas deserve a clear shape. The studio identity brings that belief into a concise visual language designed to feel direct, useful and recognisable across touchpoints.",
+    services: ["Studio positioning", "Logo and visual identity", "Identity system", "Digital presence"],
   },
 ];
 
