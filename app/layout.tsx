@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Toothless is an independent creative studio in Uganda building logos, identities and systems for people with something to say.",
   applicationName: "Toothless",
   icons: {
-    icon: "/brand/icons/toothless-10.svg",
+    icon: "/brand/logos/toothless-01.svg",
   },
   openGraph: {
     title: "Toothless — Logos, identity & systems",
