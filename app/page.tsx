@@ -1,87 +1,56 @@
 import Link from "next/link";
-import { EMAIL, projects } from "../lib/projects";
+import { EMAIL } from "../lib/projects";
+
+const projects = [
+  { slug: "flash-trade", title: "Flash Trade", type: "Motion", description: "A launch film built around the energy of the product.", art: "flash", visual: "PNL", sub: "$44,178" },
+  { slug: "shaderweb", title: "Shaderweb", type: "Design", description: "A visual identity made to move, adapt and live inside the product.", art: "shader" },
+  { slug: "hydex", title: "Hydex", type: "Motion", description: "A logo animation built to open decks and social posts.", art: "hydex" },
+  { slug: "world", title: "world.", type: "Experiments", description: "A globe that collects what one word means to people.", art: "world" },
+  { slug: "coinbase", title: "Coinbase, redesigned", type: "Experiments", description: "A fresh visual direction for a familiar product.", art: "coinbase" },
+  { slug: "radiants", title: "Radiants", type: "Direction", description: "An event identity and campaign system for Solana Mobile.", art: "radiants" },
+];
+
+function ProjectArt({ art, visual, sub }: { art: string; visual?: string; sub?: string }) {
+  return <div className={`project-art art-${art}`} aria-hidden="true">
+    {art === "flash" && <div className="trade-ui"><span className="candles">▂ ▄ ▆ ▇ ▅ ▇ ▆</span><strong>{visual}</strong><b>{sub}</b></div>}
+    {art === "shader" && <div className="shader-ui"><div className="shader-panel"><span>Copy embed</span></div><div className="shader-green">✳</div></div>}
+    {art === "hydex" && <div className="hydex-mark">H<span>Y</span></div>}
+    {art === "world" && <div className="globe"><span>world.</span></div>}
+    {art === "coinbase" && <div className="coin-ui"><b>coinbase</b><span>↗</span></div>}
+    {art === "radiants" && <div className="radiants-ui"><b>RADIANTS</b><span>SOLANA MOBILE</span></div>}
+  </div>;
+}
 
 export default function Home() {
-  return (
-    <main className="page">
-      <div className="col text">
-        <header className="masthead">
-          <Link className="wordmark" href="/" aria-label="Toothless home">Toothless<span className="period">.</span></Link>
-          <a className="email-link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
-        </header>
-
-        <section className="intro" aria-labelledby="intro-title">
-          <p className="eyebrow">Independent creative studio · Uganda / Worldwide</p>
-          <h1 id="intro-title">Logos, identity &amp; systems.</h1>
-          <p className="lead">
-            We build identities that give good ideas a clear shape — from the first mark
-            to the system that carries it into the world.
-          </p>
-        </section>
-
-        <section className="story" aria-label="About Toothless">
-          <p>
-            Toothless is an independent creative studio working at the intersection of
-            strategy and visual identity. We partner with people building something
-            meaningful and help them make it recognisable, coherent and hard to forget.
-          </p>
-          <p>
-            A logo is only the beginning. We think about the language around it, the
-            rules that hold it together and the real places it needs to work — on a
-            screen, on a package, in a room or out in the world.
-          </p>
-          <p>
-            Small by design, collaborative by nature. One considered system, made with
-            care from the first conversation to the final files.
-          </p>
-        </section>
-
-        <section className="work-section" aria-labelledby="work-title">
-          <div className="section-heading">
-            <h2 id="work-title">Selected work</h2>
-            <Link href="/work">View archive <span aria-hidden="true">↗</span></Link>
-          </div>
-          <ul className="work-list">
-            {projects.map((project, index) => (
-              <li key={project.slug}>
-                <Link href={`/work/${project.slug}`} className="work-item">
-                  <span className="work-number">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="work-copy">
-                    <span className="work-title">{project.title}</span>
-                    <span className="work-description">{project.description}</span>
-                  </span>
-                  <span className="work-meta">{project.year}<span aria-hidden="true">↗</span></span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <p className="note">More work will be added as projects are ready to share.</p>
-        </section>
-
-        <section className="services-section" aria-labelledby="services-title">
-          <h2 id="services-title">What we do</h2>
-          <ul className="service-list">
-            <li><span>01</span><div><h3>Brand foundations</h3><p>Positioning, direction and the idea that gives a brand purpose.</p></div></li>
-            <li><span>02</span><div><h3>Logo &amp; identity</h3><p>Distinctive marks and a visual language with room to grow.</p></div></li>
-            <li><span>03</span><div><h3>Identity systems</h3><p>Type, colour, layout and guidelines made for everyday use.</p></div></li>
-            <li><span>04</span><div><h3>Art direction</h3><p>A consistent point of view across the places your brand shows up.</p></div></li>
-          </ul>
-        </section>
-
-        <section className="contact-section" aria-labelledby="contact-title">
-          <p className="eyebrow">Have something in mind?</p>
-          <h2 id="contact-title">Let’s make it mean something.</h2>
-          <p>Tell us what you’re building, where you want to take it, or what needs to change.</p>
-          <a className="contact-link" href={`mailto:${EMAIL}`}>Start a conversation <span aria-hidden="true">↗</span></a>
-        </section>
-
-        <footer className="site-footer">
-          <Link className="footer-mark" href="/">Toothless<span className="period">.</span></Link>
-          <span>Logos, identity &amp; systems.</span>
-          <span>Uganda · Working worldwide</span>
-          <span>© {new Date().getFullYear()} Toothless</span>
-        </footer>
+  return <main className="rizzy-shell">
+    <aside className="profile-rail">
+      <div className="profile-top">
+        <div className="avatar" aria-hidden="true">T</div>
+        <div><h1>Toothless<span className="verified">✦</span></h1><p className="role">LOGOS, IDENTITY &amp; SYSTEMS</p></div>
       </div>
-    </main>
-  );
+      <div className="bio">
+        <p>Independent by design. Built to leave a mark.</p>
+        <p>Toothless is a creative studio working across identity, motion and digital experiences. We bring a clear point of view to the things people see, use and remember.</p>
+        <p>From the first mark to the system around it, every detail has a job. The goal is work that feels distinct, useful and hard to mistake for anything else.</p>
+        <p>Small studio. Considered work. One point of contact from first conversation to final delivery.</p>
+        <p className="booking"><a href={`mailto:${EMAIL}?subject=Project%20enquiry`}>Start a project</a>, or reach us by <a href={`mailto:${EMAIL}`}>email</a>.</p>
+      </div>
+      <div className="rail-bottom">
+        <div className="sound-row"><span className="sound-symbol">••</span><span>● SOUND</span></div>
+        <nav className="rail-links"><a href="#references">REFERENCES</a><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">INSTAGRAM ↗</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LINKEDIN ↗</a></nav>
+        <div className="testimonial" id="references"><p>Good work should be clear, distinctive and made with care. We build identities that carry an idea all the way into the world.</p><span>TOOTHLESS · STUDIO NOTE</span><div className="quote-arrows">←　→</div></div>
+      </div>
+    </aside>
+    <section className="work-area">
+      <header className="work-head"><p>SELECTED WORK <span>·</span> 6 PIECES</p><Link href="/work">Works <span aria-hidden="true">→</span></Link></header>
+      <div className="project-grid">
+        {projects.map(project => <Link className="project-card" href={`/work/${project.slug}`} key={project.slug}>
+          <ProjectArt art={project.art} visual={project.visual} sub={project.sub}/>
+          <div className="project-meta"><span>{project.title.toUpperCase()}</span><span>{project.type.toUpperCase()}</span></div>
+          <p className="project-description">{project.description}</p>
+        </Link>)}
+      </div>
+      <footer className="work-footer"><span>TOOTHLESS · INDEPENDENT CREATIVE STUDIO</span><a href={`mailto:${EMAIL}`}>{EMAIL} ↗</a></footer>
+    </section>
+  </main>;
 }
