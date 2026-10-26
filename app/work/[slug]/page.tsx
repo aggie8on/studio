@@ -8,52 +8,52 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
-  const project = projects.find((p) => p.slug === params.slug);
-  return { title: project ? `${project.title} — Toothless` : "Toothless" };
+  const project = projects.find((item) => item.slug === params.slug);
+  return {
+    title: project ? `${project.title} — Toothless` : "Toothless",
+    description: project?.description,
+  };
 }
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const index = projects.findIndex((p) => p.slug === params.slug);
+  const index = projects.findIndex((item) => item.slug === params.slug);
   const project = projects[index];
   if (!project) notFound();
-
-  const next = projects[(index + 1) % projects.length];
-  const isStudio = project.slug === "toothless-studio";
 
   return (
     <main className="page">
       <div className="col text">
-        <header className="simple-head">
-          <strong><Link href="/">Toothless</Link></strong>
-          <p><Link href="/work">← All work</Link></p>
+        <header className="inner-head">
+          <Link className="wordmark" href="/">Toothless<span className="period">.</span></Link>
+          <Link href="/work">All work <span aria-hidden="true">↗</span></Link>
         </header>
-        <p className="sep">* * *</p>
-        <section className="case-head">
+        <section className="project-intro">
+          <p className="eyebrow">Case study · {project.year}</p>
           <h1>{project.title}</h1>
-          <p className="muted">{project.tags.join(" • ")}</p>
-          <p style={{ marginTop: "1.1em" }}>{project.description}</p>
-          <div className="facts">
-            <div className="row"><span className="muted">Client</span><span>{project.client}</span></div>
-            <div className="row"><span className="muted">Year</span><span>{project.year}</span></div>
-            <div className="row"><span className="muted">Services</span><span>{project.tags.join(", ")}</span></div>
-          </div>
+          <p className="lead">{project.description}</p>
+          <p>{project.overview}</p>
         </section>
-        <section className="case-images" aria-label={`${project.title} imagery`}>
-          <div className="ph" style={{ ["--ar" as string]: "4 / 3" }} data-label="Project image">
-            {isStudio && <img src="/brand/logos/toothless-02.svg" alt="Toothless logo" />}
-          </div>
-          <div className="ph" style={{ ["--ar" as string]: "4 / 3" }} data-label="Additional image" />
+        <section className="project-facts" aria-label="Project details">
+          <div><span>Client</span><p>{project.client}</p></div>
+          <div><span>Year</span><p>{project.year}</p></div>
+          <div><span>Services</span><p>{project.services.join(", ")}</p></div>
         </section>
-        {project.placeholder && (
-          <p className="muted" style={{ marginTop: "1.6em" }}>
-            Placeholder project — images and copy will be replaced with approved work.
+        <section className="project-notes">
+          <h2>The thinking</h2>
+          <p>
+            The identity is intended to be clear before it is clever: a foundation
+            that can adapt to different formats without losing its character. The
+            system prioritises consistency, practical use and a recognisable point of view.
           </p>
-        )}
-        <p className="sep">* * *</p>
-        <nav className="case-next" aria-label="Project navigation">
-          <Link href="/work">← All work</Link>
-          <Link href={`/work/${next.slug}`}>Next: {next.title} →</Link>
-        </nav>
+          <h2>Built to be used</h2>
+          <p>
+            Rather than treating the logo as a standalone asset, the work considers
+            the wider identity — how type, spacing, colour and language work together
+            across the studio’s digital presence and future brand applications.
+          </p>
+          <p className="note">Project visuals and a fuller process breakdown will be added as the identity case study is documented.</p>
+        </section>
+        <div className="project-back"><Link href="/work">← Back to selected work</Link></div>
         <PageFoot />
       </div>
     </main>
