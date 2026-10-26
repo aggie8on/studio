@@ -1,56 +1,68 @@
+import Image from "next/image";
 import Link from "next/link";
 import { EMAIL } from "../lib/projects";
 
-const projects = [
-  { slug: "flash-trade", title: "Flash Trade", type: "Motion", description: "A launch film built around the energy of the product.", art: "flash", visual: "PNL", sub: "$44,178" },
-  { slug: "shaderweb", title: "Shaderweb", type: "Design", description: "A visual identity made to move, adapt and live inside the product.", art: "shader" },
-  { slug: "hydex", title: "Hydex", type: "Motion", description: "A logo animation built to open decks and social posts.", art: "hydex" },
-  { slug: "world", title: "world.", type: "Experiments", description: "A globe that collects what one word means to people.", art: "world" },
-  { slug: "coinbase", title: "Coinbase, redesigned", type: "Experiments", description: "A fresh visual direction for a familiar product.", art: "coinbase" },
-  { slug: "radiants", title: "Radiants", type: "Direction", description: "An event identity and campaign system for Solana Mobile.", art: "radiants" },
+const identityViews = [
+  { image: "toothless-01.png", label: "Identity system — primary mark", alt: "Toothless identity primary mark" },
+  { image: "toothless-02.png", label: "Identity system — alternate mark", alt: "Toothless identity alternate mark" },
+  { image: "toothless-03.png", label: "Identity system — visual language", alt: "Toothless identity visual language" },
+  { image: "toothless-04.png", label: "Identity system — visual language", alt: "Toothless identity visual language variation" },
+  { image: "toothless-05.png", label: "Identity system — alternate mark", alt: "Toothless identity alternate mark variation" },
+  { image: "toothless-06.png", label: "Identity system — applications", alt: "Toothless identity application" },
 ];
 
-function ProjectArt({ art, visual, sub }: { art: string; visual?: string; sub?: string }) {
-  return <div className={`project-art art-${art}`} aria-hidden="true">
-    {art === "flash" && <div className="trade-ui"><span className="candles">▂ ▄ ▆ ▇ ▅ ▇ ▆</span><strong>{visual}</strong><b>{sub}</b></div>}
-    {art === "shader" && <div className="shader-ui"><div className="shader-panel"><span>Copy embed</span></div><div className="shader-green">✳</div></div>}
-    {art === "hydex" && <div className="hydex-mark">H<span>Y</span></div>}
-    {art === "world" && <div className="globe"><span>world.</span></div>}
-    {art === "coinbase" && <div className="coin-ui"><b>coinbase</b><span>↗</span></div>}
-    {art === "radiants" && <div className="radiants-ui"><b>RADIANTS</b><span>SOLANA MOBILE</span></div>}
-  </div>;
-}
-
 export default function Home() {
-  return <main className="rizzy-shell">
-    <aside className="profile-rail">
-      <div className="profile-top">
-        <div className="avatar" aria-hidden="true">T</div>
-        <div><h1>Toothless<span className="verified">✦</span></h1><p className="role">LOGOS, IDENTITY &amp; SYSTEMS</p></div>
-      </div>
-      <div className="bio">
-        <p>Independent by design. Built to leave a mark.</p>
-        <p>Toothless is a creative studio working across identity, motion and digital experiences. We bring a clear point of view to the things people see, use and remember.</p>
-        <p>From the first mark to the system around it, every detail has a job. The goal is work that feels distinct, useful and hard to mistake for anything else.</p>
-        <p>Small studio. Considered work. One point of contact from first conversation to final delivery.</p>
-        <p className="booking"><a href={`mailto:${EMAIL}?subject=Project%20enquiry`}>Start a project</a>, or reach us by <a href={`mailto:${EMAIL}`}>email</a>.</p>
-      </div>
-      <div className="rail-bottom">
-        <div className="sound-row"><span className="sound-symbol">••</span><span>● SOUND</span></div>
-        <nav className="rail-links"><a href="#references">REFERENCES</a><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">INSTAGRAM ↗</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LINKEDIN ↗</a></nav>
-        <div className="testimonial" id="references"><p>Good work should be clear, distinctive and made with care. We build identities that carry an idea all the way into the world.</p><span>TOOTHLESS · STUDIO NOTE</span><div className="quote-arrows">←　→</div></div>
-      </div>
-    </aside>
-    <section className="work-area">
-      <header className="work-head"><p>SELECTED WORK <span>·</span> 6 PIECES</p><Link href="/work">Works <span aria-hidden="true">→</span></Link></header>
-      <div className="project-grid">
-        {projects.map(project => <Link className="project-card" href={`/work/${project.slug}`} key={project.slug}>
-          <ProjectArt art={project.art} visual={project.visual} sub={project.sub}/>
-          <div className="project-meta"><span>{project.title.toUpperCase()}</span><span>{project.type.toUpperCase()}</span></div>
-          <p className="project-description">{project.description}</p>
-        </Link>)}
-      </div>
-      <footer className="work-footer"><span>TOOTHLESS · INDEPENDENT CREATIVE STUDIO</span><a href={`mailto:${EMAIL}`}>{EMAIL} ↗</a></footer>
-    </section>
-  </main>;
+  return (
+    <main className="studio-shell">
+      <aside className="studio-rail">
+        <Link href="/" className="studio-brand" aria-label="Toothless home">
+          <Image src="/brand/icons/toothless-10.svg" alt="" width={42} height={42} priority />
+          <span>Toothless</span>
+        </Link>
+        <p className="studio-role">LOGOS, IDENTITY &amp; SYSTEMS</p>
+        <div className="studio-bio">
+          <p>Independent creative studio building identities with clarity and character.</p>
+          <p>From the first mark to the system around it, we make considered visual identities for people with something to say.</p>
+        </div>
+        <div className="studio-rail-bottom">
+          <a href={`mailto:${EMAIL}?subject=Project%20enquiry`}>Start a project ↗</a>
+          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          <nav aria-label="Main navigation">
+            <Link href="/work">Work</Link>
+            <Link href="/studio">Studio</Link>
+            <Link href="/contact">Contact</Link>
+          </nav>
+        </div>
+      </aside>
+      <section className="studio-main">
+        <header className="studio-section-heading">
+          <p>SELECTED IDENTITY <span>·</span> 6 VIEWS</p>
+          <Link href="/work">Work <span aria-hidden="true">→</span></Link>
+        </header>
+        <Link href="/work/toothless-studio" className="studio-feature">
+          <div className="studio-feature-image">
+            <Image src="/brand/exports/toothless-01.png" alt="Toothless studio identity, primary visual" fill priority sizes="(max-width: 700px) 100vw, 70vw" />
+          </div>
+          <div className="studio-feature-meta">
+            <span>TOOTHLESS</span><span>IDENTITY SYSTEM · 2026</span>
+          </div>
+          <p className="studio-feature-description">A visual identity for an independent creative studio.</p>
+        </Link>
+        <div className="studio-grid">
+          {identityViews.slice(1).map((view, index) => (
+            <Link href="/work/toothless-studio" className="studio-card" key={view.image}>
+              <div className="studio-card-image">
+                <Image src={`/brand/exports/${view.image}`} alt={view.alt} fill sizes="(max-width: 700px) 100vw, 38vw" />
+              </div>
+              <div className="studio-card-meta"><span>{view.label.toUpperCase()}</span><span>{String(index + 2).padStart(2, "0")}</span></div>
+            </Link>
+          ))}
+        </div>
+        <footer className="studio-footer">
+          <span>TOOTHLESS · INDEPENDENT CREATIVE STUDIO</span>
+          <a href={`mailto:${EMAIL}`}>{EMAIL} ↗</a>
+        </footer>
+      </section>
+    </main>
+  );
 }

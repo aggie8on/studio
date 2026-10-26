@@ -1,7 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageFoot from "../../../components/page-foot";
 import { projects } from "../../../lib/projects";
+
+const identityImages = [
+  { file: "toothless-01.png", alt: "Toothless identity primary mark" },
+  { file: "toothless-02.png", alt: "Toothless identity alternate mark" },
+  { file: "toothless-03.png", alt: "Toothless identity visual exploration" },
+  { file: "toothless-04.png", alt: "Toothless identity visual exploration variation" },
+  { file: "toothless-05.png", alt: "Toothless identity alternate mark variation" },
+  { file: "toothless-06.png", alt: "Toothless identity application" },
+];
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -16,8 +26,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
 }
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const index = projects.findIndex((item) => item.slug === params.slug);
-  const project = projects[index];
+  const project = projects.find((item) => item.slug === params.slug);
   if (!project) notFound();
 
   return (
@@ -38,6 +47,13 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           <div><span>Year</span><p>{project.year}</p></div>
           <div><span>Services</span><p>{project.services.join(", ")}</p></div>
         </section>
+        <section className="project-visuals" aria-label="Toothless identity visuals">
+          {identityImages.map((item, index) => (
+            <figure className={`project-visual project-visual-${index + 1}`} key={item.file}>
+              <Image src={`/brand/exports/${item.file}`} alt={item.alt} fill sizes="(max-width: 700px) 100vw, 50vw" />
+            </figure>
+          ))}
+        </section>
         <section className="project-notes">
           <h2>The thinking</h2>
           <p>
@@ -51,7 +67,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             the wider identity — how type, spacing, colour and language work together
             across the studio’s digital presence and future brand applications.
           </p>
-          <p className="note">Project visuals and a fuller process breakdown will be added as the identity case study is documented.</p>
         </section>
         <div className="project-back"><Link href="/work">← Back to selected work</Link></div>
         <PageFoot />
